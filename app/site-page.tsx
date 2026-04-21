@@ -31,7 +31,7 @@ export function SitePage({ title, eyebrow, description, actions, details, backgr
       {background ? <div className="absolute inset-0 z-0">{background}</div> : null}
 
       <header className="relative z-20 border-b border-border/80 bg-background/75 backdrop-blur">
-        <nav className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-2">
+        <nav className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr] items-center gap-4 px-6 py-2">
           <Link
             href="/"
             aria-label="Home"
@@ -39,9 +39,13 @@ export function SitePage({ title, eyebrow, description, actions, details, backgr
           >
             <img src="/adamlin-icon.png" alt="" className="size-18 object-contain" />
           </Link>
-          <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center justify-center gap-2 text-base font-medium text-muted-foreground sm:gap-4">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="transition-colors hover:text-foreground">
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative rounded-md px-3 py-2 transition-colors before:absolute before:inset-x-3 before:bottom-1 before:h-px before:origin-center before:scale-x-0 before:bg-primary before:transition-transform before:duration-300 hover:bg-accent/55 hover:text-foreground hover:before:scale-x-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
                 {item.label}
               </Link>
             ))}
