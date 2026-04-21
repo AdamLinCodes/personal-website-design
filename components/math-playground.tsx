@@ -68,15 +68,10 @@ export function MathPlayground() {
     const handlePointerDown = (event: PointerEvent) => {
       updatePointer(event)
       pointerRef.current.pressed = true
-      canvas.setPointerCapture(event.pointerId)
     }
 
-    const handlePointerUp = (event: PointerEvent) => {
+    const handlePointerUp = () => {
       pointerRef.current.pressed = false
-
-      if (canvas.hasPointerCapture(event.pointerId)) {
-        canvas.releasePointerCapture(event.pointerId)
-      }
     }
 
     const handlePointerLeave = () => {
@@ -207,26 +202,26 @@ export function MathPlayground() {
     resizeObserver.observe(canvas)
     resize()
 
-    canvas.addEventListener('pointermove', updatePointer)
-    canvas.addEventListener('pointerdown', handlePointerDown)
-    canvas.addEventListener('pointerup', handlePointerUp)
-    canvas.addEventListener('pointercancel', handlePointerUp)
-    canvas.addEventListener('pointerleave', handlePointerLeave)
+    window.addEventListener('pointermove', updatePointer)
+    window.addEventListener('pointerdown', handlePointerDown)
+    window.addEventListener('pointerup', handlePointerUp)
+    window.addEventListener('pointercancel', handlePointerUp)
+    window.addEventListener('blur', handlePointerLeave)
     frameId = window.requestAnimationFrame(animate)
 
     return () => {
       resizeObserver.disconnect()
-      canvas.removeEventListener('pointermove', updatePointer)
-      canvas.removeEventListener('pointerdown', handlePointerDown)
-      canvas.removeEventListener('pointerup', handlePointerUp)
-      canvas.removeEventListener('pointercancel', handlePointerUp)
-      canvas.removeEventListener('pointerleave', handlePointerLeave)
+      window.removeEventListener('pointermove', updatePointer)
+      window.removeEventListener('pointerdown', handlePointerDown)
+      window.removeEventListener('pointerup', handlePointerUp)
+      window.removeEventListener('pointercancel', handlePointerUp)
+      window.removeEventListener('blur', handlePointerLeave)
       window.cancelAnimationFrame(frameId)
     }
   }, [])
 
   return (
-    <div className="relative aspect-square w-full max-w-[460px] justify-self-center overflow-hidden rounded-full [mask-image:radial-gradient(circle_at_center,black_62%,transparent_84%)] sm:max-w-[520px]">
+    <div className="absolute inset-0 z-0 overflow-hidden">
       <canvas
         ref={canvasRef}
         aria-label="Interactive mathematical field"

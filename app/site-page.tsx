@@ -6,6 +6,8 @@ type SitePageProps = {
   eyebrow: string
   description: string
   actions?: ReactNode
+  details?: ReactNode
+  background?: ReactNode
   children?: ReactNode
 }
 
@@ -17,10 +19,18 @@ const navItems = [
   { href: '/blog', label: 'Blog' },
 ]
 
-export function SitePage({ title, eyebrow, description, actions, children }: SitePageProps) {
+export function SitePage({ title, eyebrow, description, actions, details, background, children }: SitePageProps) {
+  const sectionLayout = children
+    ? 'min-h-[calc(100vh-73px)] items-center lg:grid-cols-[minmax(0,0.88fr)_minmax(360px,1.12fr)]'
+    : details
+      ? 'items-start'
+      : 'min-h-[calc(100vh-73px)] content-center'
+
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <header className="border-b border-border/80 bg-background/75 backdrop-blur">
+    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+      {background ? <div className="absolute inset-0 z-0">{background}</div> : null}
+
+      <header className="relative z-20 border-b border-border/80 bg-background/75 backdrop-blur">
         <nav className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-2">
           <Link
             href="/"
@@ -40,15 +50,14 @@ export function SitePage({ title, eyebrow, description, actions, children }: Sit
       </header>
 
       <section
-        className={`mx-auto grid min-h-[calc(100vh-73px)] w-full max-w-6xl items-center gap-12 px-6 py-14 ${
-          children ? 'lg:grid-cols-[minmax(0,0.88fr)_minmax(360px,1.12fr)]' : 'content-center'
-        }`}
+        className={`relative z-10 mx-auto grid w-full max-w-6xl gap-12 px-6 py-14 ${sectionLayout}`}
       >
-        <div className="max-w-3xl">
+        <div className="relative z-10 max-w-3xl">
           <p className="mb-4 text-sm font-medium uppercase text-muted-foreground">{eyebrow}</p>
           <h1 className="text-4xl font-semibold tracking-normal text-balance sm:text-6xl">{title}</h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">{description}</p>
           {actions ? <div className="mt-8 flex items-center gap-3">{actions}</div> : null}
+          {details ? <div className="mt-12">{details}</div> : null}
         </div>
         {children}
       </section>

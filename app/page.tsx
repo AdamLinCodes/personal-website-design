@@ -26,6 +26,7 @@ export default function HomePage() {
       eyebrow="Personal website"
       title="Adam Lin"
       description="Hi! I'm Adam, and this is site is where I will be posting anything that I think people might want to see from me."
+      background={<MathPlayground />}
       actions={socialLinks.map(({ href, label, Icon }) => (
         <a
           key={href}
@@ -39,8 +40,6 @@ export default function HomePage() {
           <Icon className="size-5" aria-hidden="true" />
         </a>
       ))}
-    >
-      <MathPlayground />
-    </SitePage>
+    />
   )
 }
