@@ -1,12 +1,18 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
 import { SitePage } from '../site-page'
 
-const openClawSections = [
+const researchPosts = [
   {
-    title: 'Where to host?',
-    paragraphs: [
-      'The first decision I had to make was deciding where I wanted my agent to live. I was presented with three main contenders.',
-    ],
+    id: 'openclaw-setup',
+    eyebrow: 'Agent infrastructure',
+    title: 'OpenClaw Journey',
+    summary: 'A practical write-up on hosting, setup issues, API-key costs, Codex OAuth, and containerizing Hugo.',
   },
+]
+
+const hostingOptions = [
   {
     title: '1. Hosting it locally',
     paragraphs: [
@@ -30,6 +36,9 @@ const openClawSections = [
       'In the end, I decided to go with the Fully Self-Managed OpenClaw KVM 2 plan, which then led to some other issues...',
     ],
   },
+]
+
+const openClawSections = [
   {
     title: 'Issue with the self-managed plan',
     paragraphs: [
@@ -61,45 +70,120 @@ const openClawSections = [
 ]
 
 export default function ResearchPage() {
+  const [openPostId, setOpenPostId] = useState<string | null>(null)
+  const detailsRef = useRef<HTMLElement>(null)
+  const openPost = researchPosts.find((post) => post.id === openPostId)
+
+  useEffect(() => {
+    const postId = window.location.hash.replace('#', '')
+
+    if (researchPosts.some((post) => post.id === postId)) {
+      setOpenPostId(postId)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!openPostId) {
+      return
+    }
+
+    window.requestAnimationFrame(() => {
+      detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [openPostId])
+
   return (
     <SitePage
       eyebrow="Research"
       title="Research notes"
-      description="Ideas, references, and technical investigations collected while learning in public."
+      description="Research and ideas that I explore while working on my projects."
       details={
-        <article id="openclaw-setup" className="scroll-mt-32 border-t border-border pt-10">
-          <p className="text-sm font-medium uppercase text-muted-foreground">Agent infrastructure</p>
-          <h2 className="mt-2 text-3xl font-semibold">OpenClaw Journey</h2>
-
-          <div className="mt-10 space-y-10 text-base leading-8 text-muted-foreground">
-            {openClawSections.map((section) => (
-              <section key={section.title}>
-                <h3 className="text-xl font-semibold text-foreground">{section.title}</h3>
-                <div className="mt-3 space-y-3">
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </section>
+        <div className="space-y-14">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {researchPosts.map((post) => (
+              <button
+                key={post.id}
+                type="button"
+                aria-expanded={openPostId === post.id}
+                aria-controls={`${post.id}-article`}
+                onClick={() => setOpenPostId((currentId) => (currentId === post.id ? null : post.id))}
+                className={`group block rounded-md border p-5 text-left shadow-[0_10px_30px_rgba(82,64,39,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:bg-card/80 hover:shadow-[0_18px_42px_rgba(82,64,39,0.18)] focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                  openPostId === post.id ? 'border-primary/35 bg-card/85 shadow-[0_18px_42px_rgba(82,64,39,0.16)]' : 'border-border bg-card/55'
+                }`}
+              >
+                <p className="text-sm font-medium uppercase text-muted-foreground">{post.eyebrow}</p>
+                <h2 className="mt-2 text-2xl font-semibold text-foreground transition-colors group-hover:text-primary">
+                  {post.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{post.summary}</p>
+              </button>
             ))}
-
-            <section>
-              <h3 className="text-xl font-semibold text-foreground">PS</h3>
-              <p className="mt-3">
-                This video by Brian Casel was especially helpful to me:{' '}
-                <a
-                  href="https://youtu.be/bzWI3Dil9Ig?si=5yNAO_w9H9BlZJoc"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-foreground underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary"
-                >
-                  Brian Casel video
-                </a>
-                .
-              </p>
-            </section>
           </div>
-        </article>
+
+          {openPost ? (
+            <article
+              id={`${openPost.id}-article`}
+              ref={detailsRef}
+              className="scroll-mt-32 border-t border-border pt-10"
+            >
+              <p className="text-sm font-medium uppercase text-muted-foreground">{openPost.eyebrow}</p>
+              <h2 className="mt-2 text-3xl font-semibold">{openPost.title}</h2>
+
+              <div className="mt-10 space-y-10 text-base leading-8 text-muted-foreground">
+                <section>
+                  <h3 className="border-b border-border pb-3 text-2xl font-semibold text-foreground">Where to host?</h3>
+                  <div className="mt-5 space-y-5">
+                    <p>
+                      The first decision I had to make was deciding where I wanted my agent to live. I was presented with
+                      three main contenders.
+                    </p>
+                    <div className="space-y-6 border-l border-border pl-5">
+                      {hostingOptions.map((option) => (
+                        <section key={option.title}>
+                          <h4 className="text-lg font-semibold text-foreground">{option.title}</h4>
+                          <div className="mt-3 space-y-3">
+                            {option.paragraphs.map((paragraph) => (
+                              <p key={paragraph}>{paragraph}</p>
+                            ))}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+
+                {openClawSections.map((section) => (
+                  <section key={section.title}>
+                    <h3 className="border-b border-border pb-3 text-2xl font-semibold text-foreground">
+                      {section.title}
+                    </h3>
+                    <div className="mt-5 space-y-3">
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+
+                <section>
+                  <h3 className="border-b border-border pb-3 text-2xl font-semibold text-foreground">PS</h3>
+                  <p className="mt-5">
+                    This video by Brian Casel was especially helpful to me:{' '}
+                    <a
+                      href="https://youtu.be/bzWI3Dil9Ig?si=5yNAO_w9H9BlZJoc"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium text-foreground underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary"
+                    >
+                      Brian Casel video
+                    </a>
+                    .
+                  </p>
+                </section>
+              </div>
+            </article>
+          ) : null}
+        </div>
       }
     />
   )
