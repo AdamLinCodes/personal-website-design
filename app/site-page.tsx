@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { MathPlayground } from '@/components/math-playground'
 
 type SitePageProps = {
   title: string
@@ -8,6 +9,7 @@ type SitePageProps = {
   actions?: ReactNode
   details?: ReactNode
   background?: ReactNode
+  backgroundClassName?: string
   children?: ReactNode
 }
 
@@ -19,7 +21,16 @@ const navItems = [
   { href: '/blog', label: 'Blog' },
 ]
 
-export function SitePage({ title, eyebrow, description, actions, details, background, children }: SitePageProps) {
+export function SitePage({
+  title,
+  eyebrow,
+  description,
+  actions,
+  details,
+  background,
+  backgroundClassName = 'opacity-45 blur-[2px]',
+  children,
+}: SitePageProps) {
   const sectionLayout = children
     ? 'min-h-[calc(100vh-73px)] items-center lg:grid-cols-[minmax(0,0.88fr)_minmax(360px,1.12fr)]'
     : details
@@ -28,7 +39,7 @@ export function SitePage({ title, eyebrow, description, actions, details, backgr
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      {background ? <div className="absolute inset-0 z-0">{background}</div> : null}
+      <div className={`absolute inset-0 z-0 ${backgroundClassName}`}>{background ?? <MathPlayground />}</div>
 
       <header className="relative z-20 border-b border-border/80 bg-background/75 backdrop-blur">
         <nav className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr] items-center gap-4 px-6 py-2">
