@@ -107,12 +107,12 @@ export default function ResearchPage() {
                 aria-expanded={openPostId === post.id}
                 aria-controls={`${post.id}-article`}
                 onClick={() => setOpenPostId((currentId) => (currentId === post.id ? null : post.id))}
-                className={`group block rounded-md border p-5 text-left shadow-[0_10px_30px_rgba(82,64,39,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:bg-card/80 hover:shadow-[0_18px_42px_rgba(82,64,39,0.18)] focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
-                  openPostId === post.id ? 'border-primary/35 bg-card/85 shadow-[0_18px_42px_rgba(82,64,39,0.16)]' : 'border-border bg-card/55'
+                className={`group block rounded-md border p-5 text-left shadow-[0_10px_30px_rgba(82,64,39,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-accent-teal/35 hover:bg-card/80 hover:shadow-[0_18px_42px_rgba(82,64,39,0.18)] focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                  openPostId === post.id ? 'border-accent-teal/35 bg-card/85 shadow-[0_18px_42px_rgba(82,64,39,0.16)]' : 'border-border bg-card/55'
                 }`}
               >
-                <p className="text-sm font-medium uppercase text-muted-foreground">{post.eyebrow}</p>
-                <h2 className="mt-2 text-2xl font-semibold text-foreground transition-colors group-hover:text-primary">
+                <p className="font-mono text-sm font-medium uppercase text-muted-foreground">{post.eyebrow}</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold text-foreground transition-colors group-hover:text-accent-teal">
                   {post.title}
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{post.summary}</p>
@@ -126,8 +126,8 @@ export default function ResearchPage() {
               ref={detailsRef}
               className="scroll-mt-32 border-t border-border pt-10"
             >
-              <p className="text-sm font-medium uppercase text-muted-foreground">{openPost.eyebrow}</p>
-              <h2 className="mt-2 text-3xl font-semibold">{openPost.title}</h2>
+              <p className="font-mono text-sm font-medium uppercase text-muted-foreground">{openPost.eyebrow}</p>
+              <h2 className="mt-2 font-display text-3xl font-semibold">{openPost.title}</h2>
 
               <div className="mt-10 space-y-10 text-base leading-8 text-muted-foreground">
                 <section>
@@ -173,7 +173,7 @@ export default function ResearchPage() {
                       href="https://youtu.be/bzWI3Dil9Ig?si=5yNAO_w9H9BlZJoc"
                       target="_blank"
                       rel="noreferrer"
-                      className="font-medium text-foreground underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary"
+                      className="font-medium text-foreground underline decoration-accent-teal/40 underline-offset-4 transition-colors hover:text-accent-teal"
                     >
                       Brian Casel video
                     </a>

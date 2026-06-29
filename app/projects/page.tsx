@@ -9,7 +9,7 @@ const projects = [
     eyebrow: 'Mobile product',
     title: 'OnTrack',
     summary:
-      'A habit and goal-tracking app focused on daily follow-through, clean progress visibility, and thoughtful recurring-task logic.',
+      'A habit and goal tracker built on one stubborn idea: progress should be visible at a glance, not buried in a dashboard chore.',
     repoHref: 'https://github.com/KyleNewbigging/OnTrack',
     doc: [
       'OnTrack is built around the idea that habit tracking should make progress visible without turning the product into a dashboard chore. The interesting product work is in the recurring-task behavior, date-aware summaries, and views that let someone understand consistency over time rather than only checking whether today is complete.',
@@ -60,7 +60,7 @@ const projects = [
           href="https://www.linkedin.com/in/kyle-newbigging/"
           target="_blank"
           rel="noreferrer"
-          className="font-medium text-foreground underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary"
+          className="font-medium text-foreground underline decoration-accent-teal/40 underline-offset-4 transition-colors hover:text-accent-teal"
         >
           Kyle Newbigging
         </a>
@@ -84,7 +84,7 @@ const projects = [
               href="https://github.com/KyleNewbigging/OnTrack/issues/18"
               target="_blank"
               rel="noreferrer"
-              className="font-medium text-foreground underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary"
+              className="font-medium text-foreground underline decoration-accent-teal/40 underline-offset-4 transition-colors hover:text-accent-teal"
             >
               https://github.com/KyleNewbigging/OnTrack/issues/18
             </a>
@@ -147,8 +147,8 @@ export default function ProjectsPage() {
   return (
     <SitePage
       eyebrow="Projects"
-      title="Selected work"
-      description="Software projects, experiments, and systems built across product, workflow, and infrastructure thinking."
+      title="Things I built because I wanted them to exist"
+      description="A habit tracker, a dev agent that lives on a VPS, and a few experiments that wandered out of the lab. Click one to read the whole story."
       details={
         <div className="space-y-16">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -159,12 +159,12 @@ export default function ProjectsPage() {
                 aria-expanded={openProjectId === project.id}
                 aria-controls={`${project.id}-details`}
                 onClick={() => setOpenProjectId((currentId) => (currentId === project.id ? null : project.id))}
-                className={`group block rounded-md border p-5 text-left shadow-[0_10px_30px_rgba(82,64,39,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/35 hover:bg-card/80 hover:shadow-[0_18px_42px_rgba(82,64,39,0.18)] focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
-                  openProjectId === project.id ? 'border-primary/35 bg-card/85 shadow-[0_18px_42px_rgba(82,64,39,0.16)]' : 'border-border bg-card/55'
+                className={`group block rounded-md border p-5 text-left shadow-[0_10px_30px_rgba(82,64,39,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-accent-teal/35 hover:bg-card/80 hover:shadow-[0_18px_42px_rgba(82,64,39,0.18)] focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                  openProjectId === project.id ? 'border-accent-teal/35 bg-card/85 shadow-[0_18px_42px_rgba(82,64,39,0.16)]' : 'border-border bg-card/55'
                 }`}
               >
-                <p className="text-sm font-medium uppercase text-muted-foreground">{project.eyebrow}</p>
-                <h2 className="mt-2 text-2xl font-semibold text-foreground transition-colors group-hover:text-primary">
+                <p className="font-mono text-sm font-medium uppercase text-muted-foreground">{project.eyebrow}</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold text-foreground transition-colors group-hover:text-accent-teal">
                   {project.title}
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.summary}</p>
@@ -177,8 +177,8 @@ export default function ProjectsPage() {
               <section id={`${openProject.id}-details`} className="border-t border-border pt-12">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
-                    <p className="text-sm font-medium uppercase text-muted-foreground">{openProject.eyebrow}</p>
-                    <h2 className="mt-2 text-3xl font-semibold">{openProject.title}</h2>
+                    <p className="font-mono text-sm font-medium uppercase text-muted-foreground">{openProject.eyebrow}</p>
+                    <h2 className="mt-2 font-display text-3xl font-semibold">{openProject.title}</h2>
                   </div>
                   <a
                     href={openProject.repoHref}
@@ -204,7 +204,7 @@ export default function ProjectsPage() {
 
                 {'conversation' in openProject && openProject.conversation ? (
                   <div className="mt-8 rounded-md border border-border bg-card/50 p-5 shadow-[0_12px_36px_rgba(82,64,39,0.1)]">
-                    <p className="text-sm font-medium uppercase text-muted-foreground">Example WhatsApp Interaction</p>
+                    <p className="font-mono text-sm font-medium uppercase text-muted-foreground">Example WhatsApp Interaction</p>
                     <div className="mt-5 space-y-4">
                       {openProject.conversation.map((message, index) => (
                         <div key={`${message.speaker}-${index}`} className="rounded-md bg-background/70 p-4">
@@ -225,7 +225,7 @@ export default function ProjectsPage() {
                       getting Hugo running, check out the write-up in my research section:{' '}
                       <a
                         href={openProject.researchHref}
-                        className="inline-flex items-center gap-1 font-medium text-foreground underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className="inline-flex items-center gap-1 font-medium text-foreground underline decoration-accent-teal/40 underline-offset-4 transition-colors hover:text-accent-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         OpenClaw setup notes <span aria-hidden="true">-&gt;</span>
                       </a>

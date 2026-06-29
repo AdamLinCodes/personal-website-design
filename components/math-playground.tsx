@@ -8,9 +8,10 @@ type NodePoint = {
   phase: number
 }
 
-const nodePoints: NodePoint[] = Array.from({ length: 54 }, (_, index) => {
+// ponytail: O(n^2) all-pairs link pass on each frame; fine at this n, cap it if n grows past ~120.
+const nodePoints: NodePoint[] = Array.from({ length: 64 }, (_, index) => {
   const theta = index * 2.399963229728653
-  const radius = Math.sqrt((index + 0.5) / 54)
+  const radius = Math.sqrt((index + 0.5) / 64)
 
   return {
     x: 0.5 + Math.cos(theta) * radius * 0.42,
@@ -100,8 +101,8 @@ export function MathPlayground() {
       context.clearRect(0, 0, width, height)
 
       const halo = context.createRadialGradient(attractorX, attractorY, 0, attractorX, attractorY, minDimension * 0.62)
-      halo.addColorStop(0, `rgba(38, 92, 106, ${0.08 + visiblePull * 0.1})`)
-      halo.addColorStop(0.42, 'rgba(140, 86, 41, 0.04)')
+      halo.addColorStop(0, `rgba(38, 92, 106, ${0.12 + visiblePull * 0.13})`)
+      halo.addColorStop(0.42, 'rgba(140, 86, 41, 0.06)')
       halo.addColorStop(1, 'rgba(140, 86, 41, 0)')
       context.fillStyle = halo
       context.fillRect(0, 0, width, height)
@@ -133,8 +134,13 @@ export function MathPlayground() {
           const limit = minDimension * 0.18
 
           if (distance < limit) {
-            const opacity = (1 - distance / limit) * 0.14
-            context.strokeStyle = `rgba(35, 73, 82, ${opacity})`
+            const midX = (a.x + b.x) / 2
+            const midY = (a.y + b.y) / 2
+            const cursorDistance = Math.hypot(midX - attractorX, midY - attractorY)
+            const glow = clamp(1 - cursorDistance / (minDimension * 0.42), 0, 1)
+            const opacity = (1 - distance / limit) * (0.16 + glow * 0.26)
+            context.strokeStyle = `rgba(38, 96, 110, ${opacity})`
+            context.lineWidth = 1 + glow * 0.8
             context.beginPath()
             context.moveTo(a.x, a.y)
             context.lineTo(b.x, b.y)
@@ -170,16 +176,22 @@ export function MathPlayground() {
           }
         }
 
-        context.strokeStyle = ring % 2 === 0 ? 'rgba(33, 75, 86, 0.34)' : 'rgba(136, 82, 38, 0.24)'
+        context.strokeStyle = ring % 2 === 0 ? 'rgba(33, 75, 86, 0.44)' : 'rgba(136, 82, 38, 0.3)'
         context.lineWidth = ring === 0 ? 1.5 : 0.9
         context.stroke()
       }
 
       projectedNodes.forEach((node, index) => {
-        const radius = index % 7 === 0 ? 2.7 : 1.8
+        const cursorDistance = Math.hypot(node.x - attractorX, node.y - attractorY)
+        const glow = clamp(1 - cursorDistance / (minDimension * 0.32), 0, 1)
+        const base = index % 7 === 0 ? 2.7 : 1.8
+        const radius = base + glow * (2.6 + visiblePull * 1.8)
         context.beginPath()
         context.arc(node.x, node.y, radius, 0, Math.PI * 2)
-        context.fillStyle = index % 7 === 0 ? 'rgba(23, 57, 64, 0.5)' : 'rgba(91, 66, 38, 0.38)'
+        context.fillStyle =
+          index % 7 === 0
+            ? `rgba(23, 57, 64, ${0.5 + glow * 0.35})`
+            : `rgba(${91 - glow * 55}, ${66 + glow * 30}, ${38 + glow * 62}, ${0.38 + glow * 0.4})`
         context.fill()
       })
 
