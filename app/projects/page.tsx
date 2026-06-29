@@ -96,7 +96,7 @@ const projects = [
         ),
       },
     ],
-    researchHref: '/research#openclaw-setup',
+    researchHref: '/blog#openclaw-journey',
     images: [
       {
         src: '/openclaw.png',
@@ -222,12 +222,12 @@ export default function ProjectsPage() {
                   <div className="mt-8 text-base leading-8 text-muted-foreground">
                     <p>
                       If you want to read more about the findings, setup issues, and fixes I worked through while
-                      getting Hugo running, check out the write-up in my research section:{' '}
+                      getting Hugo running, check out the full write-up on my blog:{' '}
                       <a
                         href={openProject.researchHref}
                         className="inline-flex items-center gap-1 font-medium text-foreground underline decoration-accent-teal/40 underline-offset-4 transition-colors hover:text-accent-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
-                        OpenClaw setup notes <span aria-hidden="true">-&gt;</span>
+                        The OpenClaw Journey <span aria-hidden="true">-&gt;</span>
                       </a>
                     </p>
                   </div>

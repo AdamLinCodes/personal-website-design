@@ -6,6 +6,7 @@ type ExperienceSection = {
   tag?: string
   href?: string
   image?: string
+  logo?: string
   imageAlt?: string
   body: string[]
 }
@@ -15,8 +16,10 @@ const experienceSections: ExperienceSection[] = [
     title: 'Expertise',
     tag: 'Current',
     href: 'https://www.expertise.ai/',
+    logo: '/expertise-logo.svg',
+    imageAlt: 'Expertise logo',
     body: [
-      'I am an engineer at Expertise, where we build AI agents that actually do the job — not a chatbot that hands you a to-do list, but an agent that goes and finishes it. Research the account. Draft the outreach. Run the ten-step workflow on a schedule, then report back when it is done.',
+      'I am an engineer at Expertise, where we build AI agents that actually do the job. Not a chatbot that hands you a to-do list, but an agent that goes and finishes it. Research the account. Draft the outreach. Run the ten-step workflow on a schedule, then report back when it is done.',
       'Most of my work lives underneath that promise. An agent only feels like magic if the sandbox it runs in spins up in about the time it takes to blink, if the tools and connectors it reaches for are wired correctly, and if the whole multi-tenant machine stays honest about credits, errors, and exactly what each agent is allowed to touch. I move across the stack to make that true: the backend, the agent runtime, the dashboard people actually click, and the internal ops tooling that lets us catch a failure before a customer ever feels it.',
     ],
   },
@@ -37,15 +40,15 @@ const experienceSections: ExperienceSection[] = [
     image: '/level-access.jpg',
     imageAlt: 'Level Access brand visual',
     body: [
-      'Level Access was my first real engineering team, and the place I learned that “it works on my machine” is the start of the conversation, not the end. I built features across the MEAN stack — Angular, Node, Express, MongoDB — and watched how a frontend decision, a missing piece of backend validation, and a thin test all compound into whether a workflow is any good.',
-      'The product was about digital accessibility, and that stuck with me. It made the work concrete: a feature is not done because the happy path is green. It is done when it is understandable, maintainable, testable, and genuinely usable by the people it was built for — including the ones the rest of the industry tends to forget.',
+      'Level Access was my first real engineering team, and the place I learned that “it works on my machine” is the start of the conversation, not the end. I built features across the MEAN stack (Angular, Node, Express, MongoDB) and watched how a frontend decision, a missing piece of backend validation, and a thin test all compound into whether a workflow is any good.',
+      'The product was about digital accessibility, and that stuck with me. It made the work concrete: a feature is not done because the happy path is green. It is done when it is understandable, maintainable, testable, and genuinely usable by the people it was built for, including the ones the rest of the industry tends to forget.',
     ],
   },
   {
     title: 'Contract and community builds',
     body: [
       'Away from the big orgs, I take on smaller builds where the feedback loop is measured in hours, not quarters. Lume is the clearest example: I worked as a full-stack engineer on a small team, shipping responsive product features in React, TypeScript, Next.js, and Tailwind while pitching in on planning, the GitHub flow, and the customer-facing polish that decides whether a thing feels finished.',
-      'It pulls a different muscle than infrastructure work. No process to hide behind, no platform team to escalate to — just a loose product need and the job of turning it into something a real person can use, then shipping it before the moment passes.',
+      'It pulls a different muscle than infrastructure work. No process to hide behind, no platform team to escalate to, just a loose product need and the job of turning it into something a real person can use, then shipping it before the moment passes.',
     ],
   },
 ]
@@ -55,12 +58,25 @@ export default function AboutPage() {
     <SitePage
       eyebrow="About"
       title="About Adam"
-      description="I am a software engineer in Toronto. I gravitate to the layers of the stack most people would rather not think about — and lately, to teaching machines to handle the parts nobody wanted to do in the first place."
+      description="I am a software engineer in Toronto. I gravitate to the layers of the stack most people would rather not think about, and lately, to teaching machines to handle the parts nobody wanted to do in the first place."
       details={
         <div className="space-y-12">
           {experienceSections.map((section) => (
             <section key={section.title}>
-              {section.image && section.href ? (
+              {section.logo && section.href ? (
+                <a
+                  href={section.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex aspect-video w-full max-w-sm items-center justify-center rounded-md border border-border bg-card/55 px-10 shadow-[0_10px_30px_rgba(82,64,39,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-accent-teal/35 hover:shadow-[0_18px_42px_rgba(82,64,39,0.2)] focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  <img
+                    src={section.logo}
+                    alt={section.imageAlt}
+                    className="h-12 w-auto max-w-[75%] object-contain transition-transform duration-300 group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
+                  />
+                </a>
+              ) : section.image && section.href ? (
                 <a
                   href={section.href}
                   target="_blank"

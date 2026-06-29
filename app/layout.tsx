@@ -5,13 +5,13 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://adamlin.online'),
   title: {
-    default: 'Adam Lin — Software Engineer',
+    default: 'Adam Lin · Software Engineer',
     template: '%s · Adam Lin',
   },
   description:
     'Adam Lin is a software engineer in Toronto building AI agents at Expertise. Backend systems, cloud infrastructure, and a few side projects that got out of hand.',
   openGraph: {
-    title: 'Adam Lin — Software Engineer',
+    title: 'Adam Lin · Software Engineer',
     description:
       'Building AI agents at Expertise. Backend systems, cloud infrastructure, and the occasional side project.',
     url: 'https://adamlin.online',

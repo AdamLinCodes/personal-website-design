@@ -36,7 +36,7 @@ export default function HomePage() {
     <SitePage
       eyebrow="Software engineer · Toronto"
       title="Adam Lin"
-      description="I build the quiet machinery underneath software — backend systems, cloud infrastructure, and, lately, AI agents that do the work instead of just talking about it."
+      description="I build the quiet machinery underneath software: backend systems, cloud infrastructure, and lately, AI agents that do the work instead of just talking about it."
       backgroundClassName=""
       heroClassName="rounded-2xl border border-border/45 bg-background/35 p-8 shadow-[0_24px_70px_rgba(82,64,39,0.14)] backdrop-blur-[6px] sm:p-10"
       actions={socialLinks.map(({ href, label, Icon }) => (
