@@ -32,6 +32,36 @@ type BlogPost = {
 
 const blogPosts: BlogPost[] = [
   {
+    id: 'fable',
+    eyebrow: 'Models',
+    title: 'My one glorious day with Fable',
+    date: 'June 2026',
+    summary: 'I had Fable for a single day, shipped 78 pull requests, and every one of them was fire. Word is it comes back this week.',
+    body: (
+      <div className="space-y-5">
+        <p>
+          For exactly one day, I had{' '}
+          <Link href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Fable</Link>. Claude Fable 5, the
+          Mythos-class model Anthropic briefly let loose on the world. I am not being dramatic when I say it was glorious.
+          It did not feel like an assistant so much as a second version of me who never got tired, never guessed, and
+          never needed a second pass.
+        </p>
+        <p>
+          Seventy-eight pull requests. In a single day. Every last one of them fire. I have shipped a lot of code with a
+          lot of agents, and I have never had a day like that, where the only bottleneck was how fast I could read the
+          diffs and hit merge. Then, just as quickly, it was gone.
+        </p>
+        <p>
+          But here is the good part: there are rumors it switches back on{' '}
+          <Link href="https://gizmodo.com/expect-claude-fable-5-to-be-turned-back-on-in-a-matter-of-days-report-says-2000778672">
+            sometime this week
+          </Link>
+          . So if you blinked and missed it, do not worry. Stay tuned, people.
+        </p>
+      </div>
+    ),
+  },
+  {
     id: 'e2b',
     eyebrow: 'Tools',
     title: 'A shout-out to E2B',
