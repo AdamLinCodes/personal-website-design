@@ -32,11 +32,45 @@ type BlogPost = {
 
 const blogPosts: BlogPost[] = [
   {
+    id: 'fable-is-back',
+    eyebrow: 'Models',
+    title: 'Fable is back, briefly',
+    date: 'July 2026',
+    summary:
+      'Claude Fable 5 is back for a few more days, and Polymarket thinks GPT-5.6 may pick up the baton right as it leaves subscription land.',
+    body: (
+      <div className="space-y-5">
+        <p>
+          The model that gave me my best coding day of the year is back.{' '}
+          <Link href="https://www.anthropic.com/news/redeploying-fable-5">Fable 5 returned globally on July 1</Link>,
+          which means the correct response is to clear the queue, stretch the review muscles, and see how much good work
+          can fit into a ridiculous little window.
+        </p>
+        <p>
+          The catch is the window. Anthropic says Fable is included through July 7, then it moves behind usage credits. So
+          this is not a leisurely renaissance. This is a few more days with the good button lit up, and I am absolutely
+          going to press it.
+        </p>
+        <p>
+          Because the calendar apparently has a sense of humor,{' '}
+          <Link href="https://polymarket.com/event/gpt-5pt6-released-onptptpt-20260623051439980">
+            Polymarket&apos;s current leading date
+          </Link>{' '}
+          for a public GPT-5.6 release is also July 7. OpenAI&apos;s own post says GPT-5.6 is in{' '}
+          <Link href="https://openai.com/index/previewing-gpt-5-6-sol/">limited preview</Link> and coming more broadly in
+          the coming weeks, so this is not official gospel. It is, however, a very funny possible handoff: Fable&apos;s
+          included-access clock hits zero, and maybe GPT-5.6 walks on stage.
+        </p>
+      </div>
+    ),
+  },
+  {
     id: 'fable',
     eyebrow: 'Models',
     title: 'My one glorious day with Fable',
     date: 'June 2026',
-    summary: 'I had Fable for a single day, shipped 78 pull requests, and every one of them was fire. Word is it comes back this week.',
+    summary:
+      'I had Fable for a single day, shipped 78 pull requests, and every one of them was fire. Then I waited for the encore.',
     body: (
       <div className="space-y-5">
         <p>
