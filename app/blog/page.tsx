@@ -32,6 +32,29 @@ type BlogPost = {
 
 const blogPosts: BlogPost[] = [
   {
+    id: 'caffeinate-your-mac',
+    eyebrow: 'Tools',
+    title: 'Caffeinate your Mac',
+    date: 'July 2026',
+    summary:
+      'A tiny macOS note for long-running AI prompts: keep the machine awake so the work can actually finish.',
+    body: (
+      <div className="space-y-5">
+        <p>
+          Quick note for anyone on macOS running long AI prompts and wanting to walk away: get caffeinated. macOS ships
+          with the{' '}
+          <Link href="https://ss64.com/mac/caffeinate.html">
+            <code className="rounded-sm bg-muted px-1 py-0.5 font-mono text-sm text-foreground">caffeinate</code>
+          </Link>{' '}
+          command, so you can run <code className="rounded-sm bg-muted px-1 py-0.5 font-mono text-sm text-foreground">caffeinate</code>{' '}
+          in Terminal and your Mac will stay awake until you stop it. If you would rather click than type, there is also
+          a clean menu-bar UI called <Link href="https://caffeinated.app/">Caffeinated</Link>. That is the whole post.
+          Small tool, big relief.
+        </p>
+      </div>
+    ),
+  },
+  {
     id: 'fable-is-back',
     eyebrow: 'Models',
     title: 'Fable is back, briefly',
