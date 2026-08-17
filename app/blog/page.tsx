@@ -32,6 +32,37 @@ type BlogPost = {
 
 const blogPosts: BlogPost[] = [
   {
+    id: 'make-the-skill-after-the-work',
+    eyebrow: 'Agent design',
+    title: 'Make the skill after the work',
+    date: 'August 2026',
+    summary:
+      'The most authentic way to make a skill is to do the task first, then capture the workflow you actually proved.',
+    body: (
+      <div className="space-y-5">
+        <p>
+          I see a lot of people trying to make skills before they have attempted the task those skills are supposed to
+          help with. That feels backwards to me. A skill is not a wish list for an imaginary workflow. It is a record of
+          a workflow that has survived contact with reality.
+        </p>
+        <p>
+          The first run is where the useful details appear: which inputs were missing, which assumptions were dangerous,
+          which tools were actually needed, and where the work slowed down. You also find the parts that looked important
+          in advance but turned out to be noise. None of that can be specified honestly from a blank page.
+        </p>
+        <p>
+          So my rule is simple: do the thing first. Pay attention while you do it. Then turn the proven sequence into a
+          skill, including the checks, boundaries, and shortcuts that made the result good. The skill should make the next
+          run more repeatable, not pretend the first run never happened.
+        </p>
+        <p>
+          This does not mean a skill can never be designed ahead of time. It means the design should be treated as a
+          hypothesis until the task has been completed. The authentic version comes after the evidence.
+        </p>
+      </div>
+    ),
+  },
+  {
     id: 'fable-is-back',
     eyebrow: 'Models',
     title: 'Fable is back, briefly',
