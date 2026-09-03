@@ -32,6 +32,40 @@ type BlogPost = {
 
 const blogPosts: BlogPost[] = [
   {
+    id: 'the-benchmark-you-can-play',
+    eyebrow: 'Models',
+    title: 'The benchmark you can play',
+    date: 'September 2026',
+    summary:
+      'ARC-AGI-3 has something most AI benchmarks are missing: you can try the task yourself and feel what the score means.',
+    body: (
+      <div className="space-y-5">
+        <p>
+          I got pointed to <Link href="https://arcprize.org/tasks/ls20">LS20</Link>, one of the public ARC-AGI-3 tasks,
+          and immediately lost more time than I expected. It is a tiny visual world with rules you have to uncover by
+          poking at it. It is fun, but it is also a much better explanation of agent evaluation than most charts manage.
+        </p>
+        <p>
+          Usually, a benchmark result arrives as a percentage and a victory lap. You can tell that one model beat another,
+          but you cannot tell whether the task was hard in a way you recognize. Here, you can play the same kind of
+          environment. You have to explore, remember what happened, form a theory, and try not to waste your moves. The
+          number starts to mean something.
+        </p>
+        <p>
+          That matters because agent scores are never just a model score. They reflect the model plus the surrounding
+          system: how it keeps track of previous attempts, how it decides to experiment, how it recovers from a bad
+          guess, and how much useful context survives between turns. <Link href="https://docs.arcprize.org/">ARC Prize</Link>{' '}
+          describes ARC-AGI-3 as an evaluation of interactive agent capabilities, not just answering a question
+          correctly once.
+        </p>
+        <p>
+          I still like leaderboards. But I like a leaderboard much more when it comes with a task I can try myself. A
+          benchmark should not only tell us that a system is impressive. It should make it possible to understand why.
+        </p>
+      </div>
+    ),
+  },
+  {
     id: 'make-the-skill-after-the-work',
     eyebrow: 'Agent design',
     title: 'Make the skill after the work',
