@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { createElement } from 'react'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -46,6 +47,11 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-sans antialiased">
         {children}
+        {createElement('expertise-ai', {
+          client: 'c3ed6b40-1280-4172-82ff-47a9709029d7',
+          region: 'US',
+        })}
+        <script src="https://cdn.expertise.ai/genweb/ai-genweb.js" defer />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
